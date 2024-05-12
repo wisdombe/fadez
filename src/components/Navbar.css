@@ -1,0 +1,63 @@
+/* Navbar.css */
+
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.menu-icon {
+  display: none; /* Hide menu icon by default */
+  cursor: pointer;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+}
+
+.navbar-menu li {
+  margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+  .menu-icon {
+    display: block; /* Show menu icon for smaller screens */
+  }
+
+  .navbar-menu {
+    display: none; /* Hide menu items by default on smaller screens */
+    position: absolute;
+    top: 60px; /* Adjust this value based on your navbar height */
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+  }
+
+  .navbar-menu.active {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar-menu li {
+    margin-right: 0;
+    margin-bottom: 15px;
+  }
+}
