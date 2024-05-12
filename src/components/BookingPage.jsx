@@ -1,9 +1,8 @@
-// BookingPage.js
+import React, { useState, useEffect } from "react";
+import "./BookingPage.css";
 
-import React, { useState } from "react";
-import "./BookingPage.css"; // Import CSS file for BookingPage styling
-
-const BookingPage = ({ selectedBarberShop }) => {
+const BookingPage = ({ selectedBarberShop, setSelectedBarberShop }) => {
+  const [barberShop, setBarberShop] = useState(null);
   const [bookingDetails, setBookingDetails] = useState({
     date: "",
     time: "",
@@ -11,6 +10,28 @@ const BookingPage = ({ selectedBarberShop }) => {
     phoneNumber: "",
     selectedServices: [],
   });
+
+  const fetchData = async (barberShopId) => {
+    try {
+      const response = await fetch(`api/barber-shops/${barberShopId}`);
+      if (!response.ok) {
+        throw new Error("Failed to fetch barber shop data");
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching barber shop data:", error);
+      throw error; // Rethrow error to handle it in useEffect
+    }
+  };
+
+  useEffect(() => {
+    // Retrieve selected barber shop data from localStorage
+    const storedBarberShop = localStorage.getItem("selectedBarberShop");
+    if (storedBarberShop) {
+      setSelectedBarberShop(JSON.parse(storedBarberShop));
+    }
+  }, []); // Empty dependency array to run once on component mount
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

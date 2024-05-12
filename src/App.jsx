@@ -34,7 +34,12 @@ function App() {
 
           <Route
             path="/book/:barberShopName"
-            element={<BookingPage selectedBarberShop={selectedBarberShop} />}
+            element={
+              <BookingPage
+                selectedBarberShop={selectedBarberShop}
+                setSelectedBarberShop={setSelectedBarberShop}
+              />
+            }
           />
           <Route path="/Tools" element={<Tools />} />
           <Route path="/Learn" element={<Learn />} />

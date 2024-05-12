@@ -47,7 +47,7 @@ const HomePage = ({ selectedBarberShop, setSelectedBarberShop }) => {
 
   const handleSelectBarberShop = (barberShop) => {
     setSelectedBarberShop(barberShop);
-    // Additional logic here if needed
+    localStorage.setItem("selectedBarberShop", JSON.stringify(barberShop));
   };
 
   return (
