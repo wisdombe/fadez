@@ -1,12 +1,12 @@
 // HomePage.js
 
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
 import barber1Image from "./images/barber1.jpg";
 import barber2Image from "./images/barber2.webp";
 import barber3Image from "./images/barber3.webp";
 import "./HomePage.css"; // Import CSS file for HomePage styling
 import Sidebar from "./Sidebar";
+import BookingSection from "./BookingSection";
 
 const HomePage = ({ selectedBarberShop, setSelectedBarberShop }) => {
   const popularBarberShops = [
@@ -20,6 +20,7 @@ const HomePage = ({ selectedBarberShop, setSelectedBarberShop }) => {
         { name: "Shave", price: 15 },
         { name: "Beard Trim", price: 10 },
       ],
+      artisans: ["daniel", "samuel", "samson", "blessing"],
     },
     {
       name: "Style Master",
@@ -31,6 +32,7 @@ const HomePage = ({ selectedBarberShop, setSelectedBarberShop }) => {
         { name: "Shave", price: 15 },
         { name: "Beard Trim", price: 10 },
       ],
+      artisans: ["joshua", "victor", "grace", "wilson"],
     },
     {
       name: "Classic Cuts",
@@ -42,14 +44,48 @@ const HomePage = ({ selectedBarberShop, setSelectedBarberShop }) => {
         { name: "Shave", price: 15 },
         { name: "Beard Trim", price: 10 },
       ],
+      artisans: ["kunle", "john", "biodun", "steven", "temi"],
     },
   ];
 
   const handleSelectBarberShop = (barberShop) => {
     setSelectedBarberShop(barberShop);
-    localStorage.setItem("selectedBarberShop", JSON.stringify(barberShop));
+    openModal();
   };
 
+  const book = document.getElementById("book");
+  const bookingmodal = document.getElementById("booking-modal");
+
+  const openModal = () => {
+    const bookingmodal = document.getElementById("booking-modal");
+    if (bookingmodal) {
+      bookingmodal.style.display = "block";
+    }
+  };
+
+  const closeModal = (e) => {
+    const bookingmodal = document.getElementById("booking-modal");
+    if (bookingmodal && e.target === bookingmodal) {
+      bookingmodal.style.display = "none";
+    }
+  };
+
+  useEffect(() => {
+    const buttons = document.querySelectorAll(".book-session-button");
+    buttons.forEach((button) => {
+      button.addEventListener("click", openModal);
+
+      const bookingmodal = document.getElementById("booking-modal");
+      bookingmodal.addEventListener("click", closeModal);
+
+      return () => {
+        button.forEach((button) => {
+          button.removeEventListener("click", openModal);
+        });
+        bookingmodal.removeEventListener("click", closeModal);
+      };
+    });
+  }, []);
   return (
     <div className="homepage">
       <div className="sidebar-container">
@@ -64,19 +100,22 @@ const HomePage = ({ selectedBarberShop, setSelectedBarberShop }) => {
             <div className="grid">
               {popularBarberShops.map((barberShop) => (
                 <div key={barberShop.name} className="barber-shop-card">
+                  <div className="image-container">
                   <img src={barberShop.image} alt={barberShop.name} />
+                  </div>
+         
                   <h2>{barberShop.name}</h2>
                   <p>{barberShop.address}</p>
                   <div className="rating">
                     {barberShop.rating} ★ ({barberShop.rating} reviews)
                   </div>
-                  <NavLink
-                    to={`/book/${encodeURIComponent(barberShop.name)}`}
+                  <button
                     className="book-session-button"
+                    id="book"
                     onClick={() => handleSelectBarberShop(barberShop)}
                   >
                     Book a Session
-                  </NavLink>
+                  </button>
                 </div>
               ))}
             </div>
@@ -84,6 +123,9 @@ const HomePage = ({ selectedBarberShop, setSelectedBarberShop }) => {
             <p>No popular barber shops available.</p>
           )}
         </div>
+      </div>
+      <div className="bookings-container" id="booking-modal">
+        <BookingSection selectedBarberShop={selectedBarberShop} />
       </div>
     </div>
   );

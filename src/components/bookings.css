@@ -1,0 +1,107 @@
+#booking-modal-content {
+  background: #fefefe;
+  margin: 10% auto;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.bookings h1 {
+  font-weight: bold;
+  display: block;
+  font-size: 20px;
+  text-align: center;
+}
+/* .position-div {
+  position: sticky;
+  top: 50px;
+  margin: 0 auto;
+} */
+.bookings {
+  padding: 20px;
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+.bookings input {
+  display: block;
+}
+.form-group {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.form-group input {
+  margin: 10px auto;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.service-link-container {
+  text-align: center;
+  margin: 20px 0;
+}
+.service-card-link {
+  margin: 15px auto;
+  padding: 10px;
+  background: yellow;
+  border-radius: 5px;
+}
+
+/* confirmation page styling */
+
+.confirmation-page {
+  margin: 10% auto;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  line-height: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-align: center;
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+.confirmation-page h2 {
+  font-size: 30px;
+  font-weight: bolder;
+  text-wrap: nowrap;
+  margin: 15% auto;
+}
+.confirmation-page p {
+  text-align: center;
+}
+
+.confirmation-page strong {
+  text-align: left;
+}
+
+.info-text {
+  margin: 20px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.button-container {
+  margin: 15px auto;
+  text-align: center;
+}
+.cancel-button {
+  font-weight: bold;
+  padding: 10px;
+  background: yellow;
+  border-radius: 5px;
+}
+
+.Home-link {
+  margin: 15px auto;
+}
+.home-link {
+  text-decoration: underline;
+  color: black;
+}

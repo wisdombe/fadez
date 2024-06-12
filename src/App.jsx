@@ -1,13 +1,11 @@
 import React, { useState } from "react";
-import BookingPage from "./components/BookingPage";
 import HomePage from "./components/HomePage";
 import NavBar from "./components/NavBar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import { CartProvider } from "./components/services/CartContext";
 import Tools from "./components/services/Tools";
 import Learn from "./components/services/Learn";
 import Register from "./components/services/Register";
+import Confirmation from "./components/Confirmation";
 
 function App() {
   // State to manage selected barberShop data
@@ -32,18 +30,10 @@ function App() {
             }
           />
 
-          <Route
-            path="/book/:barberShopName"
-            element={
-              <BookingPage
-                selectedBarberShop={selectedBarberShop}
-                setSelectedBarberShop={setSelectedBarberShop}
-              />
-            }
-          />
           <Route path="/Tools" element={<Tools />} />
           <Route path="/Learn" element={<Learn />} />
           <Route path="/Register" element={<Register />} />
+          <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
       </div>
     </>
